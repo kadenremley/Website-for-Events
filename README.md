@@ -1,2 +1,8 @@
-# Website-for-Events
-EventEase is a full stack web application built using ASP.NET Core MVC that allows one to manage their venues, events, and bookings. It utilizes technologies such as C#, Entity Framework Core, SQL Server, MVC design pattern, CRUD, validation, search, and Azurite Blob Storage.
+EventEase is a full stack ASP.NET Core MVC application that was created to organize venues, events, and bookings in a systematic manner. In terms of technology stack, C#, ASP.NET Core MVC, Entity Framework Core, SQL Server, Razor Views, and Bootstrap were used in order to develop EventEase. The objective of the website is to assist organizations in managing their venue bookings systematically without any scheduling conflicts.
+
+MVC stands for Model View Controller, which means that the application is divided into models, views, and controllers. Entity Framework Core has been used for database integration and object relational mapping. Data can be stored and retrieved from SQL Server through C# classes and LINQ queries. CRUD operations have been performed on Venues, Events, and Bookings.
+
+Cloud Development was implemented through the use of Azurite Blob Storage, a tool that mimics Microsoft Azure Blob Storage locally. Instead of having the users manually store image URLs, they can now upload images for venues and events directly into their blob storage containers. In addition, there is validation and error handling for preventing double bookings, from deleting records that have active bookings, and providing users with alerts for validation.
+
+There is also a search feature, better display of bookings by using related table data, previews for the images, responsive layout, and database relations between tables. This project showcases the practical understanding of cloud development, database management, MVC framework, dependency injection, validation, file uploads, and web application development best practices. The technologies and skills learned in this project will be very useful in the industry.
+
