@@ -1,0 +1,81 @@
+﻿@*
+References:
+Microsoft (2026) File uploads in ASP.NET Core MVC views.
+Available at: https://learn.microsoft.com/en-us/aspnet/core/mvc/models/file-uploads
+(Accessed: 05 May 2026)
+
+Microsoft (2026) Forms and Tag Helpers in ASP.NET Core.
+Available at: https://learn.microsoft.com/en-us/aspnet/core/mvc/views/working-with-forms
+(Accessed: 05 May 2026)
+
+Dhanampal, T. (2026) CLDV6211 lecture notes on Razor Views and form handling.
+The Independent Institute of Education.
+*@
+
+@model EventEase.Models.Event
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Event</h4>
+<hr />
+
+<div class="row">
+    <div class="col-md-4">
+
+        <!-- Form to create a new event -->
+        <form asp-action="Create" enctype="multipart/form-data">
+
+            <!-- Shows validation errors -->
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <!-- Event name -->
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+
+            <!-- Start date -->
+            <div class="form-group">
+                <label asp-for="StartDate" class="control-label"></label>
+                <input asp-for="StartDate" class="form-control" type="datetime-local" />
+                <span asp-validation-for="StartDate" class="text-danger"></span>
+            </div>
+
+            <!-- End date -->
+            <div class="form-group">
+                <label asp-for="EndDate" class="control-label"></label>
+                <input asp-for="EndDate" class="form-control" type="datetime-local" />
+                <span asp-validation-for="EndDate" class="text-danger"></span>
+            </div>
+
+            <!-- Upload event image -->
+            <div class="form-group">
+                <label for="imageFile" class="control-label">Event Image</label>
+                <input type="file" name="imageFile" class="form-control" />
+            </div>
+
+            <!-- Submit button -->
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+
+        </form>
+    </div>
+</div>
+
+<div>
+    <!-- Back to event list -->
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        // Includes validation scripts
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

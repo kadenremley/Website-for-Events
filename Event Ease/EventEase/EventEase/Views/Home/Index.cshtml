@@ -1,0 +1,103 @@
+﻿@*
+Kaden Jason Remley ST10472838
+CLDV6211 POE Part 1
+EventEase - Home Views (Dashboard and Privacy)
+
+References:
+Microsoft (2025) Layout in ASP.NET Core MVC.
+Available at: https://learn.microsoft.com/en-us/aspnet/core/mvc/views/layout
+(Accessed: 15 April 2026)
+
+Bootstrap (2025) Bootstrap documentation.
+Available at: https://getbootstrap.com/docs/5.0/
+(Accessed: 13 April 2026)
+
+Microsoft (2025) CSS in ASP.NET Core.
+Available at: https://learn.microsoft.com/en-us/aspnet/core/client-side/css
+(Accessed: 12 April 2026)
+
+Dhanampal, T. (2026) CLDV6211 lecture notes on UI design.
+The Independent Institute of Education.
+*@
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<style>
+    /* Background gradient for the whole page */
+    body {
+        background: linear-gradient(135deg, #1e3c72, #2a5298);
+        min-height: 100vh;
+    }
+
+    /* Styling for dashboard cards */
+    .dashboard-card {
+        border-radius: 15px;
+        transition: 0.3s;
+    }
+
+    /* Hover effect for cards */
+    .dashboard-card:hover {
+        transform: scale(1.05);
+    }
+
+    /* Main header card styling */
+    .main-card {
+        border-radius: 20px;
+        background: white;
+    }
+</style>
+
+<div class="container mt-5">
+
+    <!-- Main information card -->
+    <div class="card main-card shadow-lg p-4 text-center">
+
+        <!-- System title -->
+        <h1 class="display-4">EventEase</h1>
+        <p class="lead">Event Management System</p>
+
+        <hr />
+
+        <!-- Student details -->
+        <p><strong>Created by:</strong> Kaden Jason Remley</p>
+        <p><strong>Student Number:</strong> ST10472838</p>
+
+    </div>
+
+    <!-- Dashboard section -->
+    <div class="row mt-4">
+
+        <!-- Venues card -->
+        <div class="col-md-4">
+            <div class="card dashboard-card shadow text-center p-4">
+                <h4>Venues</h4>
+                <p>Manage all venues</p>
+                <!-- Link to Venues page -->
+                <a asp-controller="Venues" asp-action="Index" class="btn btn-primary">View Venues</a>
+            </div>
+        </div>
+
+        <!-- Events card -->
+        <div class="col-md-4">
+            <div class="card dashboard-card shadow text-center p-4">
+                <h4>Events</h4>
+                <p>Manage all events</p>
+                <!-- Link to Events page -->
+                <a asp-controller="Events" asp-action="Index" class="btn btn-success">View Events</a>
+            </div>
+        </div>
+
+        <!-- Bookings card -->
+        <div class="col-md-4">
+            <div class="card dashboard-card shadow text-center p-4">
+                <h4>Bookings</h4>
+                <p>Manage all bookings</p>
+                <!-- Link to Bookings page -->
+                <a asp-controller="Bookings" asp-action="Index" class="btn btn-dark">View Bookings</a>
+            </div>
+        </div>
+
+    </div>
+</div>

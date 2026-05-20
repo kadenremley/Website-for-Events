@@ -1,0 +1,88 @@
+﻿@*
+Kaden Jason Remley ST10472838
+CLDV6211 POE Part 1
+EventEase - Event Views (CRUD)
+
+References:
+Microsoft (2025) ASP.NET Core MVC views overview.
+Available at: https://learn.microsoft.com/en-us/aspnet/core/mvc/views/overview
+(Accessed: 10 April 2026)
+
+Microsoft (2025) Tag Helpers in ASP.NET Core.
+Available at: https://learn.microsoft.com/en-us/aspnet/core/mvc/views/tag-helpers
+(Accessed: 09 April 2026)
+
+Microsoft (2025) Working with data in ASP.NET Core MVC.
+Available at: https://learn.microsoft.com/en-us/aspnet/core/data/ef-mvc
+(Accessed: 07 April 2026)
+
+Dhanampal, T. (2026) CLDV6211 lecture notes on MVC Views and UI design.
+The Independent Institute of Education.
+*@
+
+@model IEnumerable<EventEase.Models.Event>
+
+<h2>Events</h2>
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["ErrorMessage"]
+    </div>
+}
+
+<!-- Search form -->
+<form asp-action="Index" method="get">
+    <!-- Input for search text -->
+    <input type="text" name="searchString" placeholder="Search..." />
+
+    <!-- Submit search -->
+    <button type="submit">Search</button>
+</form>
+
+<p>
+    <!-- Button to create a new event -->
+    <a asp-action="Create" class="btn btn-primary">Add Event</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <!-- Column headings -->
+            <th>Image</th>
+            <th>Name</th>
+            <th>Start</th>
+            <th>End</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Loop through all events -->
+        @foreach (var item in Model)
+        {
+            <tr>
+                <!-- Display event image or placeholder if empty -->
+                <td>
+                    <img src="@(string.IsNullOrEmpty(item.ImageUrl) ? "https://via.placeholder.com/80" : item.ImageUrl)"
+                         width="80" />
+                </td>
+
+                <!-- Event name -->
+                <td>@item.Name</td>
+
+                <!-- Start date -->
+                <td>@item.StartDate</td>
+
+                <!-- End date -->
+                <td>@item.EndDate</td>
+
+                <!-- Action links -->
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.EventId">Details</a> |
+                    <a asp-action="Edit" asp-route-id="@item.EventId">Edit</a> |
+                    <a asp-action="Delete" asp-route-id="@item.EventId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

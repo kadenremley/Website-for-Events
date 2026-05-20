@@ -1,0 +1,47 @@
+﻿@model EventEase.Models.Event
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Event</h4>
+    <hr />
+
+    <!-- Display event details -->
+    <dl class="row">
+        <!-- Event name -->
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <!-- Start date -->
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.StartDate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.StartDate)
+        </dd>
+
+        <!-- End date -->
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.EndDate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.EndDate)
+        </dd>
+    </dl>
+</div>
+
+<div>
+    <!-- Link to edit this event -->
+    <a asp-action="Edit" asp-route-id="@Model?.EventId">Edit</a> |
+
+    <!-- Back to event list -->
+    <a asp-action="Index">Back to List</a>
+</div>

@@ -1,0 +1,45 @@
+﻿@model EventEase.Models.Booking
+
+<h2>Create Booking</h2>
+
+<!-- Form to submit booking data -->
+<form asp-action="Create" method="post">
+
+    <!-- Displays validation errors -->
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <!-- Venue dropdown -->
+    <div class="form-group">
+        <label asp-for="VenueId"></label>
+        <!-- Dropdown list populated from controller (ViewBag.VenueId) -->
+        <select asp-for="VenueId" class="form-control" asp-items="ViewBag.VenueId">
+            <option value="">-- Select Venue --</option>
+        </select>
+    </div>
+
+    <!-- Event dropdown -->
+    <div class="form-group">
+        <label asp-for="EventId"></label>
+        <!-- Dropdown list populated from controller (ViewBag.EventId) -->
+        <select asp-for="EventId" class="form-control" asp-items="ViewBag.EventId">
+            <option value="">-- Select Event --</option>
+        </select>
+    </div>
+
+    <!-- Booking date input -->
+    <div class="form-group">
+        <label asp-for="BookingDate"></label>
+        <!-- Allows user to select date and time -->
+        <input asp-for="BookingDate" type="datetime-local" class="form-control" />
+        <span asp-validation-for="BookingDate" class="text-danger"></span>
+    </div>
+
+    <br />
+
+    <!-- Submit button -->
+    <button type="submit" class="btn btn-primary">Create</button>
+
+    <!-- Back to list -->
+    <a asp-action="Index" class="btn btn-secondary">Back</a>
+
+</form>

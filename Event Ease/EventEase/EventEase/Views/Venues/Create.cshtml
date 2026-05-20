@@ -1,0 +1,79 @@
+﻿@*
+References:
+Microsoft (2026) File uploads in ASP.NET Core MVC views.
+Available at: https://learn.microsoft.com/en-us/aspnet/core/mvc/models/file-uploads
+(Accessed: 06 May 2026)
+
+Microsoft (2026) Forms and Tag Helpers in ASP.NET Core.
+Available at: https://learn.microsoft.com/en-us/aspnet/core/mvc/views/working-with-forms
+(Accessed: 06 May 2026)
+
+Dhanampal, T. (2026) CLDV6211 lecture notes on Razor Views and form handling.
+The Independent Institute of Education.
+*@
+
+@model EventEase.Models.Venue
+
+@{
+    ViewData["Title"] = "Create Venue";
+}
+
+<h2 class="mb-3">➕ Add New Venue</h2>
+
+<hr />
+
+<div class="row">
+    <div class="col-md-6">
+
+        <!-- Form to create a new venue -->
+        <form asp-action="Create" enctype="multipart/form-data">
+
+            <!-- Shows validation errors -->
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <!-- Venue name -->
+            <div class="form-group mb-3">
+                <label asp-for="Name" class="form-label"></label>
+                <input asp-for="Name" class="form-control" placeholder="Enter venue name" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+
+            <!-- Venue location -->
+            <div class="form-group mb-3">
+                <label asp-for="Location" class="form-label"></label>
+                <input asp-for="Location" class="form-control" placeholder="Enter location" />
+                <span asp-validation-for="Location" class="text-danger"></span>
+            </div>
+
+            <!-- Venue capacity -->
+            <div class="form-group mb-3">
+                <label asp-for="Capacity" class="form-label"></label>
+                <input asp-for="Capacity" class="form-control" placeholder="Enter capacity" />
+                <span asp-validation-for="Capacity" class="text-danger"></span>
+            </div>
+
+            <!-- Upload venue image -->
+            <div class="form-group">
+                <label for="imageFile" class="control-label">Venue Image</label>
+                <input type="file" name="imageFile" class="form-control" />
+            </div>
+
+            <!-- Action buttons -->
+            <div class="form-group mt-3">
+                <!-- Submit form -->
+                <input type="submit" value="Create Venue" class="btn btn-success" />
+
+                <!-- Cancel and go back -->
+                <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        // Includes validation scripts
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

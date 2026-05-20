@@ -1,0 +1,74 @@
+﻿@*
+Kaden Jason Remley ST10472838
+CLDV6211 POE Part 1
+EventEase - Booking Views (CRUD)
+
+References:
+Microsoft (2025) Razor syntax reference for ASP.NET Core.
+Available at: https://learn.microsoft.com/en-us/aspnet/core/mvc/views/razor
+(Accessed: 08 April 2026)
+
+Microsoft (2025) Working with forms in ASP.NET Core MVC.
+Available at: https://learn.microsoft.com/en-us/aspnet/core/mvc/views/working-with-forms
+(Accessed: 06 April 2026)
+
+Microsoft (2025) Model binding in ASP.NET Core.
+Available at: https://learn.microsoft.com/en-us/aspnet/core/mvc/models/model-binding
+(Accessed: 06 April 2026)
+
+Dhanampal, T. (2026) CLDV6211 lecture notes on Razor Views and form handling.
+The Independent Institute of Education.
+*@
+
+@model IEnumerable<EventEase.Models.Booking>
+
+<h2>Bookings</h2>
+
+<!-- Search form -->
+<form asp-action="Index" method="get">
+    <!-- Input for search text -->
+    <input type="text" name="searchString" placeholder="Search..." />
+
+    <!-- Submit search -->
+    <button type="submit">Search</button>
+</form>
+
+<p>
+    <!-- Button to create a new booking -->
+    <a asp-action="Create" class="btn btn-primary">Add Booking</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <!-- Column headings -->
+            <th>Venue</th>
+            <th>Event</th>
+            <th>Date</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Loop through all bookings -->
+        @foreach (var item in Model)
+        {
+            <tr>
+                <!-- Display venue name (null-safe) -->
+                <td>@item.Venue?.Name</td>
+
+                <!-- Display event name (null-safe) -->
+                <td>@item.Event?.Name</td>
+
+                <!-- Display booking date -->
+                <td>@item.BookingDate</td>
+
+                <!-- Action links -->
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.BookingId">Details</a> |
+                    <a asp-action="Edit" asp-route-id="@item.BookingId">Edit</a> |
+                    <a asp-action="Delete" asp-route-id="@item.BookingId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

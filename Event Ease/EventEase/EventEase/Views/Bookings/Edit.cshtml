@@ -1,0 +1,59 @@
+﻿@model EventEase.Models.Booking
+
+<h2>Edit Booking</h2>
+
+<!-- Form to update an existing booking -->
+<form asp-action="Edit" method="post">
+
+    <!-- Security token to prevent CSRF attacks -->
+    @Html.AntiForgeryToken()
+
+    <!-- Hidden field to keep BookingId -->
+    <input type="hidden" asp-for="BookingId" />
+
+    <!-- Shows validation errors -->
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <!-- Venue dropdown -->
+    <div class="form-group">
+        <label asp-for="VenueId"></label>
+        <!-- Dropdown populated from controller -->
+        <select asp-for="VenueId" class="form-control" asp-items="ViewBag.VenueId"></select>
+    </div>
+
+    <!-- Event dropdown -->
+    <div class="form-group">
+        <label asp-for="EventId"></label>
+        <!-- Dropdown populated from controller -->
+        <select asp-for="EventId" class="form-control" asp-items="ViewBag.EventId"></select>
+    </div>
+
+    <!-- Booking date input -->
+    <div class="form-group">
+        <label asp-for="BookingDate"></label>
+        <span asp-validation-for="BookingDate" class="text-danger"></span>
+
+        <!-- Format ensures correct display in datetime-local input -->
+        <input asp-for="BookingDate" type="datetime-local" class="form-control"
+               value="@Model?.BookingDate.ToString("yyyy-MM-ddTHH:mm")" />
+
+        <!-- Validation message -->
+        <span asp-validation-for="BookingDate" class="text-danger"></span>
+    </div>
+
+    <br />
+
+    <!-- Save changes -->
+    <button type="submit" class="btn btn-primary">Save</button>
+
+    <!-- Back to list -->
+    <a asp-action="Index" class="btn btn-secondary">Back</a>
+
+</form>
+
+@section Scripts {
+    @{
+        // Includes validation scripts
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

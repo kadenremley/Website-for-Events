@@ -1,0 +1,96 @@
+﻿@*
+Kaden Jason Remley ST10472838
+CLDV6211 POE Part 1
+EventEase - Venue Views (CRUD)
+
+References:
+Microsoft (2025) Displaying data in ASP.NET Core MVC views.
+Available at: https://learn.microsoft.com/en-us/aspnet/core/mvc/views/displaying-data
+(Accessed: 09 April 2026)
+
+Microsoft (2025) Forms and validation in ASP.NET Core MVC.
+Available at: https://learn.microsoft.com/en-us/aspnet/core/mvc/models/validation
+(Accessed: 08 April 2026)
+
+Microsoft (2025) Static files in ASP.NET Core.
+Available at: https://learn.microsoft.com/en-us/aspnet/core/fundamentals/static-files
+(Accessed: 09 April 2026)
+
+Dhanampal, T. (2026) CLDV6211 lecture notes on CRUD interfaces.
+The Independent Institute of Education.
+*@
+
+@model IEnumerable<EventEase.Models.Venue>
+
+<h2>Venues</h2>
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["ErrorMessage"]
+    </div>
+}
+
+<!-- Search form -->
+<form asp-action="Index" method="get">
+    <!-- Input for search text -->
+    <input type="text" name="searchString" placeholder="Search..." />
+
+    <!-- Submit search -->
+    <button type="submit">Search</button>
+</form>
+
+<p>
+    <!-- Button to add a new venue -->
+    <a asp-action="Create" class="btn btn-primary">Add Venue</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <!-- Column headings -->
+            <th>Image</th>
+            <th>Name</th>
+            <th>Location</th>
+            <th>Capacity</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Loop through all venues -->
+        @foreach (var item in Model)
+        {
+            <tr>
+                <!-- Display image if available -->
+                <td>
+                    @if (!string.IsNullOrEmpty(item.ImageUrl))
+                    {
+                        <!-- Show venue image -->
+                        <img src="@Url.Content(item.ImageUrl)" width="100" height="80" style="object-fit:cover;" />
+                    }
+                    else
+                    {
+                        <!-- Show text if no image -->
+                        <span>No Image</span>
+                    }
+                </td>
+
+                <!-- Venue name -->
+                <td>@item.Name</td>
+
+                <!-- Venue location -->
+                <td>@item.Location</td>
+
+                <!-- Venue capacity -->
+                <td>@item.Capacity</td>
+
+                <!-- Action links -->
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.VenueId">Details</a> |
+                    <a asp-action="Edit" asp-route-id="@item.VenueId">Edit</a> |
+                    <a asp-action="Delete" asp-route-id="@item.VenueId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
